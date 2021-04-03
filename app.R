@@ -1,7 +1,6 @@
 #install.packages("mlr")
 
 library(shiny)
-runApp("app.R")
 library(ggplot2)
 library(mlr)
 library(dplyr)

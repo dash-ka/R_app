@@ -137,7 +137,7 @@ ui <- navbarPage("Titanic: ",
                                tabPanel("Visualize",
                                         column(titlePanel("Data Visualization for Titanic Data"),
                                         br(),
-                                        p("In this section you can play with graphical tools and plot the distribution of different features of passengers of the ship. ",
+                                        p("In this section you can play with graphical tools and plot the distribution of different features of the passengers on the ship. ",
                                           style="color:black;background-color:#80ced6;padding:15px;border-radius:10px"
                                         ),
                                         br(),

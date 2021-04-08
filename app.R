@@ -13,7 +13,7 @@ library(visNetwork)
 library(dplyr)
 library(tidyr)
 
-data<- read.csv("train.csv")
+data<- read.csv("www/train.csv")
 titanic <- tibble(data) %>%                
   select(Survived, Pclass, Sex, Age, SibSp, Parch, Fare, Embarked) %>% 
   filter(Embarked!= "" ) %>% 

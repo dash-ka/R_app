@@ -10,7 +10,7 @@ thematic::thematic_shiny()
 library(parallel)
 library(parallelMap)
 library(visNetwork)
-library(dbplyr)
+library(dplyr)
 library(tidyr)
 
 data<- read.csv("C://Users/dashb/Downloads/train.csv")

@@ -244,7 +244,7 @@ ui <- navbarPage("Titanic: ",
                                                  br(),
                                                 
                                                  column(1),
-                                                 column(10,actionButton("click", "Train!",style="color:white; background-color: #80ced6;;border-color: #80ced6")) ),
+                                                 column(10,actionButton("click", "Train!",style="color:black; background-color: #80ced6;;border-color: #80ced6")) ),
                                                  br(),
                                                  br(),
                                         

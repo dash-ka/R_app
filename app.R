@@ -13,7 +13,7 @@ library(visNetwork)
 library(dplyr)
 library(tidyr)
 
-data<- read.csv("C://Users/dashb/Downloads/train.csv")
+data<- read.csv("www/train.csv")
 titanic <- tibble(data) %>%                
   select(Survived, Pclass, Sex, Age, SibSp, Parch, Fare, Embarked) %>% 
   filter(Embarked!= "" ) %>% 
@@ -69,7 +69,7 @@ ui <- navbarPage("Titanic: ",
                  br(),
                  br(),
                  br(),
-                 tags$img(src="titanic.jpg", width="650px",height="400px"),br())),
+                 tags$img(src="www/titanic.jpg", width="650px",height="400px"),br())),
                   
         hr(),
          

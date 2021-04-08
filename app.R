@@ -68,7 +68,7 @@ ui <- navbarPage("Titanic: ",
           column(6,
                  br(),
                  br(),
-                 br(),HTML(paste0("<img src='www/titanic.jpg'>")),
+                 br(),HTML(paste0("<img src=www/titanic.jpg>")),
                 # tags$img(src="www/titanic.jpg", width="650px",height="400px"),
                  br())),
                   

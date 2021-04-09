@@ -1,4 +1,6 @@
-
+install.packages("shinyWidgets")
+install.packages("mlr")
+install.packages("parallelMap")
 library(shiny)
 library(shinyWidgets)
 library(shinythemes)

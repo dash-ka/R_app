@@ -1,13 +1,13 @@
-install.packages("shinyWidgets")
-install.packages("mlr")
-install.packages("parallelMap")
-install.packages("shinythemes")
-install.packages("bslib")
-install.packages("visNetwork")
-install.packages("parallel")
-install.packages("skimr")
-install.packages("thematic")
-install.packages("sparkline")
+#install.packages("shinyWidgets")
+#install.packages("mlr")
+#install.packages("parallelMap")
+#install.packages("shinythemes")
+#install.packages("bslib")
+#install.packages("visNetwork")
+#install.packages("parallel")
+#install.packages("skimr")
+#install.packages("thematic")
+#install.packages("sparkline")
 library(sparkline)
 library(shiny)
 library(shinyWidgets)
@@ -62,7 +62,8 @@ ui <- navbarPage("Titanic: ",
     '))),
                   
                   
-         fluidRow( 
+         fluidRow(
+           column(width=1),
            column(titlePanel("Titanic: Machine Learning from Disaster"),
                   br(),
                   p("The sinking of the Titanic is one of the most infamous shipwrecks in history.

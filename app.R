@@ -74,7 +74,7 @@ ui <- navbarPage("Titanic: ",
                   br(),
                   p("The dataset used in this application contains information on the survival status, sex, age, passenger class and other four variables of 712 passengers in the Titanic disaster of 1912.",
                     style="color:black;background-color:#d5f4e6;padding:15px;border-radius:10px"),
-                  width=5),
+                  width=4),
            
           column(6,
                  br(),

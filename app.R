@@ -90,7 +90,8 @@ ui <- navbarPage("Titanic: ",
          
         fluidRow(column(width =1), 
                     column(dataTableOutput("tit"),
-                    width = 11)),
+                    width = 10),
+                column(width =1) ),
                   
         hr(),
         p(em("Developed by"),br("Shlyk Darya"),style="text-align:center; font-family: times")),

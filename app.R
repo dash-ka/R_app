@@ -375,7 +375,7 @@ server<- function(input, output) {
            
   output$result <-renderPrint({tuned_params()})
   
-  output$mmce <-renderText({print("The best hyperparameter combination yields a mean misclassification error equal to : ", round(mmce(), digits = 4) )})
+  output$mmce <-renderText({print("The best hyperparameter combination yields a mean misclassification error equal to : ",mmce() )})
   
   rv1 <-reactiveValues(text = "Click the button and wait a second to see the tuning results...")
   observeEvent(input$click,{rv1$text <-"The tuned hyperparameters are reported below:"} )

@@ -29,7 +29,7 @@ titanic <- tibble(data) %>%
   filter(Embarked!= "" ) %>% 
   drop_na() %>% 
   mutate_at( c(1,2,3,5,6,8), .funs=list(factor)) %>% 
-  rename(Gender=Sex, Passenger_Class=Pclass, Relatives_aboard=Parch, Sib_Spouse=SibSp) %>% 
+  rename(Gender=Sex, Passenger_Class=Pclass, Relatives_aboard=Parch) %>% 
   mutate_at("Age", .funs=list(as.integer)) %>% 
   mutate("Survived" = factor(Survived,labels=c("No","Yes")))
 

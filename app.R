@@ -29,7 +29,7 @@ titanic <- tibble(data) %>%
   filter(Embarked!= "" ) %>% 
   drop_na() %>% 
   mutate_at( c(1,2,3,5,6,8), .funs=list(factor)) %>% 
-  rename(Gender=Sex, Passenger_Class=Pclass, Relatives_aboard=Parch) %>% 
+  rename(Gender=Sex, Passenger_Class=Pclass, Relatives_aboard=Parch, Sib_Spouse=SibSp) %>% 
   mutate_at("Age", .funs=list(as.integer)) %>% 
   mutate("Survived" = factor(Survived,labels=c("No","Yes")))
 
@@ -90,8 +90,7 @@ ui <- navbarPage("Titanic: ",
          
         fluidRow(column(width =1), 
                     column(dataTableOutput("tit"),
-                    width = 10),
-                column(width =1) ),
+                    width = 10)),
                   
         hr(),
         p(em("Developed by"),br("Shlyk Darya"),style="text-align:center; font-family: times")),
@@ -165,6 +164,8 @@ ui <- navbarPage("Titanic: ",
                                         width=5),
                                         
                                         column(
+                                          br(),
+                                          br(),
                                           br(),
                                           br(),
                                           br(),
@@ -263,7 +264,9 @@ ui <- navbarPage("Titanic: ",
                                                  fluidRow(column(11,textOutput("params"),
                                                                  br(),
                                                                  tags$head(tags$style("#result{background-color: #E0FFFF}")),
-                                                                 verbatimTextOutput("result")), 
+                                                                 verbatimTextOutput("result"),
+                                                                 br(),
+                                                                 textOutput("mmce")), 
                                                           column(1))))))),
                           
          
@@ -325,9 +328,12 @@ server<- function(input, output) {
     ggplot(NULL,aes(x=var_x(),fill=var_fill()))+
       geom_bar(position="dodge")+
       labs( x=input$x, y= "Frequency",fill=input$fill)+
-      theme(axis.title.x = element_text(color="#80ced6", size=13, face="bold"),
-            axis.title.y = element_text(color="#80ced6", size=13, face="bold"),
-            legend.title = element_text(color="#80ced6", size=13, face="bold"))
+      theme(axis.title.x = element_text(color="#80ced6", size=14, face="bold", family="mono"),
+            axis.title.y = element_text(color="#80ced6", size=14, face="bold", family="mono"),
+            legend.title = element_text(color="#80ced6", size=14, face="bold", family="mono"),
+            legend.text = element_text(size=12, family="mono"),
+            axis.text = element_text(size=12, family="mono"),
+           )
   })    
  
   task <-makeClassifTask(data=titanic, target = "Survived")
@@ -346,9 +352,11 @@ server<- function(input, output) {
   randSearch <- reactive({makeTuneControlRandom(maxit = input$maxiter)}) #user :choose the number of iterations of random
   cvForTuning <- reactive({makeResampleDesc("CV", iters = input$folds)})#max depth of the tree
   
-  tuned_params<-eventReactive(input$click, {tuning()})
+  tuned_params<-eventReactive(input$click, {tuning()$x})
   
   model <-eventReactive(input$click, {training()})
+  
+  mmce <- eventReactive(input$click, {tuning()$y})
   
   tuning<- reactive({cores = detectCores()
            parallelStartSocket(cores-1)
@@ -357,21 +365,22 @@ server<- function(input, output) {
                               par.set = param(),
                               control = randSearch())
            parallelStop()
-           tunedTreePars$x
+           tunedTreePars
   })
   
    training<-reactive({ 
-           tunedTree <- setHyperPars(tree, par.vals = tuning() )
+           tunedTree <- setHyperPars(tree, par.vals = tuning()$x )
            tunedTreeModel <- train(tunedTree, task)
            getLearnerModel(tunedTreeModel)})
            
   output$result <-renderPrint({tuned_params()})
   
+  output$mmce <-renderText({print("The best hyperparameter combination yields a mean misclassification error equal to : ", round(mmce(), digits = 4) ))})
+  
   rv1 <-reactiveValues(text = "Click the button and wait a second to see the tuning results...")
   observeEvent(input$click,{rv1$text <-"The tuned hyperparameters are reported below:"} )
   output$params <-renderText({rv1$text})
-  
-  
+ 
   rv2 <-reactiveValues(text = " ***  You should tune hyperparameters and train your model first in order to visualize the decision tree! ***")
   observeEvent(input$click,{rv2$text <-""} )
   output$lack <- renderText({rv2$text})

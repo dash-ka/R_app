@@ -390,7 +390,7 @@ server<- function(input, output) {
             colorVar = c("#deeaee","#eea29a","#80ced6", "#ffef96","#f7786b", "#618685", "#b2b2b2"), 
             colorY = c( "#b8a9c9", "orange"), colorEdges=c("#86af49"), shapeY = "box", nodesFontSize = 30, 
             legend = F) %>%
-      visNodes(font=list("size"=40,"face"="Garamond", "color"="#36486b", "align"="center") ) %>% 
+      visNodes(font=list("size"=50,"face"="Garamond", "color"="#36486b", "align"="center") ) %>% 
       visEdges(font =list("face"="Garamond"))
   }) 
   

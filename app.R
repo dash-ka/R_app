@@ -133,7 +133,7 @@ ui <- navbarPage("Titanic: ",
                                             HTML(paste0(
                                               "<p>The variables present in the dataset are listed below:</p>",
                                               "<p></p>",
-                                              "<ul><li>Survived: Survival status ( 0 = No;1 = Yes)</li>
+                                              "<ul><li>Survived: Survival status (No = Not survived; Yes = Survived)</li>
                                               <li>Passenger_Class: Ticket Class (1 = 1st, 2= 2nd; 3= 3rd) </li>
                                               <li>Gender: Gender of the passenger (Male or Female)</li>
                                               <li>Age: Passenger Age</li>

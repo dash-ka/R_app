@@ -10,7 +10,7 @@ The "DATA" tab aims at making the user familiar with the data and is composed of
 
  - "Explore" section allows two different display modes :
     the default one enables the user to learn the structure of the data,
-    wheares the second one displays the summary statistics to support the user in her explorative analysis.
+    whereas the second one displays the summary statistics to support the user in her explorative analysis.
   
  - "Visualize" section enables a graphical representation of the feature relationships.
   
